@@ -24,8 +24,7 @@ class CreateComponenteTable extends Migration
             $table->integer('id_ct_marca');
             $table->tinyInteger('id_categoria');
             $table->double('descuento_componente');
-            $table->longblob('imagen');
-            
+
             $table->foreign('id_categoria', 'fk_cat--')->references('id_categoria')->on('categoria')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('id_ct_marca', 'fk_ct-marc')->references('id_marca')->on('marca');
         });
