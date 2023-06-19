@@ -19,6 +19,10 @@
                                     @endforeach
                                 </select>
                             </div>
+                            <div class="form-group">
+                                <label for="importe">Importe</label>
+                                <input id="importe" name="importe" type="number" step="1" class="form-control" value="30" required>
+                            </div>
                             @if(session("productos") !== null)
                                 <div class="form-group">
                                     <button name="accion" value="terminar" type="submit" class="btn btn-success">Terminar
@@ -44,7 +48,15 @@
                     </div>
                 </div>
                 @if(session("productos") !== null)
-                    <h2>Total: ${{number_format($total, 2)}}</h2>
+                    @php
+                        $subtotal = 0;
+                        foreach(session("productos") as $producto) {
+                            $subtotal += $producto->precio_venta * $producto->cantidad;
+                        }
+                        $total = $subtotal + 30; // Suma el costo del importe al subtotal
+                    @endphp
+                    <h3>Subtotal: $<span id="subtotal">{{number_format($subtotal, 2)}}</span></h3>
+                    <h3>Total: $<span id="total">{{number_format($total, 2)}}</span></h3>
                     <div class="table-responsive">
                         <table class="table table-bordered">
                             <thead>
@@ -86,4 +98,18 @@
             </div>
         </div>
     </div>
+
+    <script>
+        // Capturar el evento de cambio en el campo de importe
+        const importeInput = document.getElementById('importe');
+        importeInput.addEventListener('change', calcularTotales);
+
+        function calcularTotales() {
+            const importe = parseFloat(importeInput.value);
+            const subtotal = parseFloat(document.getElementById('subtotal').innerText);
+            const total = subtotal + importe;
+
+            document.getElementById('total').innerText = total.toFixed(2);
+        }
+    </script>
 @endsection
