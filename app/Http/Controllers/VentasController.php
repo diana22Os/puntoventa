@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Venta;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
 use Mike42\Escpos\PrintConnectors\WindowsPrintConnector;
 use Mike42\Escpos\Printer;
@@ -11,10 +12,11 @@ use Mike42\Escpos\Printer;
 class VentasController extends Controller
 {
 
-    public function ticket(Request $request)
+    public function ticket(Request $id)
     {
-        $venta = Venta::findOrFail($request->get("id"));
-        $nombreImpresora = env("NOMBRE_IMPRESORA");
+        $venta = Venta::findOrFail($id->get("id"));
+
+        /**$nombreImpresora = env("NOMBRE_IMPRESORA");
         $connector = new WindowsPrintConnector($nombreImpresora);
         $impresora = new Printer($connector);
         $impresora->setJustification(Printer::JUSTIFY_CENTER);
@@ -45,8 +47,12 @@ class VentasController extends Controller
         $impresora->text("Gracias por su compra\n");
         $impresora->text("https://parzibyte.me/blog");
         $impresora->feed(5);
-        $impresora->close();
-        return redirect()->back()->with("mensaje", "Ticket impreso");
+        $impresora->close();**/
+        $dompdf = App::make("dompdf.wrapper");
+        $dompdf->loadView("factura.factura", [
+            "venta" => $venta,
+        ]);
+        return $dompdf->stream();
     }
 
 

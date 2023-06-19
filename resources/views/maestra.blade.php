@@ -19,7 +19,7 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-    <a class="navbar-brand" target="_blank" href="//parzibyte.me/blog">{{env("APP_NAME")}}</a>
+    <a class="navbar-brand" target="_blank" href="{{url('/')}}">INICIO</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse"
             id="botonMenu" aria-label="Mostrar u ocultar menú">
         <span class="navbar-toggler-icon"></span>
@@ -38,24 +38,7 @@
                     </a>
                 </li>
             @else
-                <li class="nav-item">
-                    <a class="nav-link" href="{{route("home")}}">Inicio&nbsp;<i class="fa fa-home"></i></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{route("productos.index")}}">Productos&nbsp;<i class="fa fa-box"></i></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{route("vender.index")}}">Vender&nbsp;<i class="fa fa-cart-plus"></i></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{route("ventas.index")}}">Ventas&nbsp;<i class="fa fa-list"></i></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{route("usuarios.index")}}">Usuarios&nbsp;<i class="fa fa-users"></i></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{route("clientes.index")}}">Clientes&nbsp;<i class="fa fa-users"></i></a>
-                </li>
+
             @endguest
         </ul>
         <ul class="navbar-nav ml-auto">
@@ -66,13 +49,6 @@
                     </a>
                 </li>
             @endauth
-            <li class="nav-item">
-                <a class="nav-link" href="{{route("soporte.index")}}">Soporte&nbsp;<i
-                        class="fa fa-hands-helping"></i></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{route("acerca_de.index")}}">Acerca de&nbsp;<i class="fa fa-info"></i></a>
-            </li>
         </ul>
     </div>
 </nav>

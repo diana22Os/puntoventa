@@ -1,39 +1,20 @@
 @extends('welcome')
 @section('content')
-    <div class="text-center">
-        <h1>CERVESERIA EL OSO</h1>
-        <p style="margin: 50px;">VEN A DIVERTIRTE XD.</p>
-        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel"
-             style="max-width: 1300px; margin: 0 auto;">
-            <div class="carousel-indicators">
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
-                        aria-current="true" aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
-                        aria-label="Slide 2"></button>
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
-                        aria-label="Slide 3"></button>
+    <div class="container">
+        <section class="showcase">
+            <header>
+                <h2 class="logo">oso</h2>
+            </header>
+
+            <div class="overlay"></div>
+            <div class="text">
+                <h2>CERVECERIA EL OSO</h2>
+                <h3>La mejor opcion y calidad</h3>
+                <p>Líder en la distribución y venta de cerveza en Jilotepec.</p>
+                <p>Actualmente, se vende 17 marcas nacionales, entre las que destacan Corona Extra, la marca más valiosa de América Latina, Modelo Especial, Victoria, Pacífico y Negra Modelo.</p>
+                <a href="{{route('productos.index')}}">comprar</a>
             </div>
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="img/2.jpg" class="d-block w-100" alt="Slide 1" style="max-height: 400px;">
-                </div>
-                <div class="carousel-item">
-                    <img src="img/3.jpg" class="d-block w-100" alt="Slide 2" style="max-height: 400px;">
-                </div>
-                <div class="carousel-item">
-                    <img src="img/4.jpg" class="d-block w-100" alt="Slide 3" style="max-height: 400px;">
-                </div>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
-                    data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
-                    data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
-        </div>
+            <img src="img/cerveza.png" alt="cerveza"/>
+        </section>
     </div>
 @endsection

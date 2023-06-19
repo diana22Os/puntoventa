@@ -8,7 +8,6 @@ Route::get('/', function () {
     return view('index');
 })->name('inicio');
 
-Route::resource("productos", \App\Http\Controllers\ProductosController::class);
 
 Route::resource("usuarios", \App\Http\Controllers\UserController::class)->parameters(["usuarios" => "user"]);
 
@@ -35,8 +34,17 @@ Route::middleware("auth")
     ->group(function () {
         Route::resource("clientes", \App\Http\Controllers\ClientesController::class);
         Route::resource("usuarios", \App\Http\Controllers\UserController::class)->parameters(["usuarios" => "user"]);
-
-        Route::get("/ventas/ticket", [\App\Http\Controllers\VentasController::class, 'ticket'])->name("ventas.ticket");
+        Route::resource("productos", \App\Http\Controllers\ProductosController::class);
+        Route::get("/factura", [\App\Http\Controllers\VentasController::class, 'ticket'])->name("ventas.ticket");
+        /**Route::get("/factura/{id_v}", function ($id_v) {
+            $detalleVentaList = DetalleVentum::where('folio_venta', $id_v)->get();
+            $dompdf = App::make("dompdf.wrapper");
+            $dompdf->loadView("factura.factura", [
+                "nombre" => "Luis Cabrera Benito",
+                "detalleVentaList" => $detalleVentaList,
+            ]);
+            return $dompdf->stream();
+        })->name('factura');**/
         Route::resource("ventas", \App\Http\Controllers\VentasController::class);
         Route::get("/vender", [\App\Http\Controllers\VenderController::class, 'index'])->name("vender.index");
         Route::post("/productoDeVenta", [\App\Http\Controllers\VenderController::class, 'agregarProductoVenta'])->name("agregarProductoVenta");
